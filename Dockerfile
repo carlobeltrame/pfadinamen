@@ -9,4 +9,4 @@ COPY checkpoint_4650.json /root/torch-rnn/cv/checkpoint_4650.json
 
 USER 1001
 EXPOSE 5000
-CMD FLASK_ENV=development FLASK_APP=/app/app.py flask run
+CMD FLASK_APP=/app/app.py flask run --host=0.0.0.0
