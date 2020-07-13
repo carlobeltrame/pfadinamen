@@ -35,3 +35,10 @@ th sample.lua -checkpoint cv/checkpoint_4650.t7 -length 2000 -gpu -1
 ```
 
 Repeat the second command for a new set of names.
+
+## Deployment as web service
+Apparently there is no nice way to run a torch model as a web service. You can run a flask server that creates a new torch process for each request as follows:
+```bash
+docker build --no-cache -t pfadinamen .
+docker run -it --rm -v $(pwd):/root/torch-rnn/cv --network=host pfadinamen
+```
