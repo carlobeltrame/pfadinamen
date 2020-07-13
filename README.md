@@ -42,3 +42,20 @@ Apparently there is no nice way to run a torch model as a web service. You can r
 docker build --no-cache -t pfadinamen .
 docker run -it --rm -v $(pwd):/root/torch-rnn/cv --network=host pfadinamen
 ```
+
+## Deploying to OpenShift (note to self)
+Publish a new version to Docker Hub:
+```
+docker build -t carlobeltrame/pfadinamen:latest
+docker push carlobeltrame/pfadinamen:latest
+```
+
+Initial deploy in a project:
+```
+oc new-app carlobeltrame/pfadinamen
+```
+
+Deploy a newly published version:
+```
+oc import-image carlobeltrame/pfadinamen:latest
+```
