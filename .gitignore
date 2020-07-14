@@ -3,3 +3,5 @@
 *.h5
 input.json
 *.pyc
+logs/
+.DS_Store

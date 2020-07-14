@@ -1,47 +1,51 @@
 # Pfadinamen-Generator
 
-This repository contains a [char-rnn](https://github.com/karpathy/char-rnn) that was trained with roughly 30000 unique scout/CEVI/Jubla nicknames. It can generate a stream of names, generating novel names that are not in the training set about 92% of the time.
+This repository contains a [char-rnn](https://github.com/ekzhang/char-rnn-keras) that was trained with roughly 20000 unique scout/CEVI/Jubla nicknames. It can generate a stream of names, generating novel names that are not in the training set about 74% of the time.
 
+TODO post new examples that were generated with the keras model
 Example generated names:
 ```
-Okia
-Quats
-Ninon
-Cimbreot
-Pijuri
-Solvet
-Nonohi
-Negas
-Ludilli
-Malu
-Mia
-Ciella
-Porux
-Phoo
-Penta
-Badisa
-Tstragsu
-Uelli
-Guitin
-Hazto
+Auk
+Fälge
+Truffi
+Munti
+Joye
+Sussi
+Pisedondi
+Pauba
+Giava
+Kawela
+Nave
+Marena
+Ahuk
+Eboja
+Orica
+Astian
+Sminyra
+Tinimi
+Krokos
+Kirpper
 ```
 
 It's not perfect, but usable as inspiration for new names, especially since it's cheap to generate new names.
 
 How to use it:
 ```bash
-docker run -it --rm -v $(pwd):/root/torch-rnn/data -v $(pwd):/root/torch-rnn/cv carlobeltrame/char-rnn:latest bash
-th sample.lua -checkpoint cv/checkpoint_4650.t7 -length 2000 -gpu -1
+# Run a Docker container for working with the model
+docker run -it --rm -v $(pwd):/app -w /app tensorflow/tensorflow
+# Normalize your input file (optional)
+# This will print removed lines to stdout and write kept lines to the output file
+python normalize.py --input=input.txt --output=input-normalized.txt
+# Train the model using a training file in data/input.txt
+python train.py --input input-normalized.txt --epochs 50
+# Sample from a trained model at a specific epoch
+python sample.py 50
 ```
 
-Repeat the second command for a new set of names.
+Repeat the last command for a new set of 20 names, or add e.g. `--len 50` to generate 50 names at a time instead.
 
 ## Deployment as web service
-Apparently there is no nice way to run a torch model as a web service. You can run a flask server that creates a new torch process for each request as follows:
-```bash
-docker build --no-cache -t pfadinamen .
-docker run -it --rm -v $(pwd):/root/torch-rnn/cv --network=host pfadinamen
-```
+TODO something with tensorflow.js maybe?
 
 ## Deploying to OpenShift (note to self)
 Publish a new version to Docker Hub:
