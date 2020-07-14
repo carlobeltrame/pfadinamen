@@ -5,11 +5,63 @@
     <meta name="viewport" content="width=device-width">
     <title>Pfadinamen-Generator</title>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.1/dist/tf.min.js"></script>
+    <link rel="stylesheet" href="termynal.css">
+    <style>
+      [data-termynal]::after { content: 'Pfadinamen-Generator'; top: 12px }
+      @media screen and (max-width: 500px) {
+        [data-termynal]::after { content: 'Pfadinamen'; }
+      }
+      body {
+        --color-bg: #ddd;
+        --color-bg-alt: #ccc;
+        --color-text: #1a1e24;
+        --color-text-subtle: #787878;
+        background: linear-gradient(to right, #3A1C71, #2D99C8, #BAD5AF);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      [data-termynal] {
+        max-width: 90vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+      }
+      [data-ty-bottom-bar] {
+        margin: 0 -45px -35px;
+        padding: 15px 20px;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        background: var(--color-bg-alt);
+      }
+      [data-ty-bottom-bar] button {
+        background: #f4c025;
+        font-size: 1rem;
+        border: 0;
+        padding: 0.7rem 1.2rem;
+        border-radius: 4px;
+      }
+      [data-ty-bottom-bar] button:hover {
+        background: #F3BC16;
+      }
+      [data-ty-bottom-bar] button:disabled {
+        opacity: 50%;
+        background: #f4c025 !important;
+      }
+    </style>
   </head>
   <body>
-      <h1>Pfadinamen-Generator</h1>
-      <div id="names" style="white-space: pre"></div>
-      <button id="refresh-button" style="margin-top: 1rem; display: none" onclick="generateNames()">Nochmaaal</button>
-      <script src="./index.js"></script>
+    <div id="termynal" data-termynal style="min-height: 34rem">
+      <span style="white-space: pre; line-height: 1" id="names" data-ty></span>
+      <div data-ty-bottom-bar>
+        <button id="refresh-button" disabled="disabled" onclick="generateNames()">Nochmaaal &rsaquo;</button>
+      </div>
+    </div>
+    <script src="./index.js"></script>
   </body>
 </html>

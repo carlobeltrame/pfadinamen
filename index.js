@@ -10,11 +10,11 @@ function randomChoice(weights) {
 }
 
 function hideRefreshButton() {
-    document.getElementById('refresh-button').style.display = "none"
+    document.getElementById('refresh-button').disabled = true
 }
 
 function showRefreshButton() {
-    document.getElementById('refresh-button').style.display = "initial"
+    document.getElementById('refresh-button').disabled = false
 }
 
 async function generateNames() {
