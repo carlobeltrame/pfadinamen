@@ -2,7 +2,6 @@
 
 This repository contains a [char-rnn](https://github.com/ekzhang/char-rnn-keras) that was trained with roughly 20000 unique scout/CEVI/Jubla nicknames. It can generate a stream of names, generating novel names that are not in the training set about 74% of the time.
 
-TODO post new examples that were generated with the keras model
 Example generated names:
 ```
 Auk
