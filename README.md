@@ -31,8 +31,9 @@ It's not perfect, but usable as inspiration for new names, especially since it's
 
 How to use it:
 ```bash
-# Run a Docker container for working with the model
-docker run -it --rm -v $(pwd):/app -w /app tensorflow/tensorflow
+# Build and run a Docker container for working with the model
+docker build -t pfadinamen .
+docker run -it --rm -v $(pwd):/app pfadinamen
 # Normalize your input file (optional)
 # This will print removed lines to stdout and write kept lines to the output file
 python normalize.py --input=input.txt --output=input-normalized.txt

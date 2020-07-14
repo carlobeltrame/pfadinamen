@@ -5,8 +5,9 @@ from pathlib import Path
 import sys
 
 import numpy as np
+import tensorflowjs as tfjs
 
-from model import build_model, save_weights, load_weights
+from model import build_model, build_sample_model, save_weights, load_weights
 
 DATA_DIR = './data'
 LOG_DIR = './logs'
@@ -90,14 +91,17 @@ def train(text, epochs=100, save_freq=10, resume=False):
 
         if (epoch + 1) % save_freq == 0:
             save_weights(epoch + 1, model)
-            model.save('{}/SavedModel-{}'.format(MODEL_DIR, epoch + 1), save_format='tf', overwrite=True)
+            sample_model = build_sample_model(vocab_size)
+            load_weights(epoch + 1, sample_model)
+            sample_model.save('{}/SavedModel-{}'.format(MODEL_DIR, epoch + 1), save_format='tf', overwrite=True)
+            tfjs.converters.save_keras_model(sample_model, '{}/SavedModel-{}-tfjs'.format(MODEL_DIR, epoch + 1))
             print('Saved checkpoint to', 'weights.{}.h5'.format(epoch + 1))
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Train the model on some text.')
     parser.add_argument('--input', default='nottingham-jigs.txt',
                         help='name of the text file to train from')
-    parser.add_argument('--epochs', type=int, default=100,
+    parser.add_argument('--epochs', type=int, default=50,
                         help='number of epochs to train for')
     parser.add_argument('--freq', type=int, default=10,
                         help='checkpoint save frequency')

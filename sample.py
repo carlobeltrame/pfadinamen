@@ -6,24 +6,13 @@ import numpy as np
 from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.layers import LSTM, Dropout, TimeDistributed, Dense, Activation, Embedding
 
-from model import build_model, load_weights
+from model import build_sample_model, load_weights
 from normalize import STARTING_LETTERS
 
 from pprint import pprint
 
 DATA_DIR = './data'
 MODEL_DIR = './model/1'
-
-def build_sample_model(vocab_size):
-    model = Sequential()
-    model.add(Embedding(vocab_size, 512, batch_input_shape=(1, 1)))
-    for i in range(3):
-        model.add(LSTM(256, return_sequences=(i != 2), stateful=True))
-        model.add(Dropout(0.2))
-
-    model.add(Dense(vocab_size))
-    model.add(Activation('softmax'))
-    return model
 
 def sample(epoch, header, num_lines):
     with open(os.path.join(MODEL_DIR, 'char_to_idx.json'), 'r') as f:
@@ -42,7 +31,7 @@ def sample(epoch, header, num_lines):
         model.predict_on_batch(batch)
 
     for i in range(num_lines):
-        sample = ''
+        sample = -1
         while not sample == newline_symbol:
             batch = np.zeros((1, 1))
             if sampled:
