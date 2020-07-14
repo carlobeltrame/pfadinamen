@@ -38,7 +38,7 @@ docker run -it --rm -v $(pwd):/app pfadinamen
 # This will print removed lines to stdout and write kept lines to the output file
 python normalize.py --input=input.txt --output=input-normalized.txt
 # Train the model using a training file in data/input.txt
-python train.py --input input-normalized.txt --epochs 50
+python train.py --input input-normalized.txt
 # Sample from a trained model at a specific epoch
 python sample.py 50
 ```
@@ -46,21 +46,6 @@ python sample.py 50
 Repeat the last command for a new set of 20 names, or add e.g. `--len 50` to generate 50 names at a time instead.
 
 ## Deployment as web service
-TODO something with tensorflow.js maybe?
+The trained models are also saved in TensorFlow.js format, which allows to serve the models as static files and use them on the client (in JavaScript in the browser). This repository contains an index.html and index.js file, and can simply be deployed to any static file server. At least the index.html and index.js files as well as model/1/char_to_idx.json and model/1/<your-model>-tfjs must be deployed.
 
-## Deploying to OpenShift (note to self)
-Publish a new version to Docker Hub:
-```
-docker build -t carlobeltrame/pfadinamen:latest
-docker push carlobeltrame/pfadinamen:latest
-```
-
-Initial deploy in a project:
-```
-oc new-app carlobeltrame/pfadinamen
-```
-
-Deploy a newly published version:
-```
-oc import-image carlobeltrame/pfadinamen:latest
-```
+The models can also be deployed using Tensorflow serving, since they are also saved in the SavedModel format.
