@@ -45,6 +45,6 @@ python sample.py 50
 Repeat the last command for a new set of 20 names, or add e.g. `--len 50` to generate 50 names at a time instead.
 
 ## Deployment as web service
-The trained models are also saved in TensorFlow.js format, which allows to serve the models as static files and use them on the client (in JavaScript in the browser). This repository contains an index.html and index.js file, and can simply be deployed to any static file server. At least the index.html and index.js files as well as model/1/char_to_idx.json and model/1/<your-model>-tfjs must be deployed.
+The trained models are also saved in TensorFlow.js format, which allows to serve the models as static files and use them on the client (in JavaScript in the browser). This repository contains an index.html and index.js file, and can simply be deployed to any static file server. At least the index.html, index.js, termynal.css files as well as model/1/char_to_idx.json and model/1/<your-model>-tfjs must be deployed.
 
 The models can also be deployed using Tensorflow serving, since they are also saved in the SavedModel format.
