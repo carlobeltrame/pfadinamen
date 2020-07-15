@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Generiere mit künstlicher Intelligenz auf Knopfdruck neue Pfadinamen!">
     <title>Pfadinamen-Generator</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.1/dist/tf.min.js"></script>
+    <script src="tf.min.js"></script>
     <link rel="stylesheet" href="termynal.css">
+    <link rel="manifest" href="manifest.json">
     <style>
       [data-termynal]::after { content: 'Pfadinamen-Generator'; top: 12px }
       @media screen and (max-width: 500px) {
@@ -56,6 +58,11 @@
         background: #f4c025 !important;
       }
     </style>
+    <script>
+    if('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js', { scope: './' })
+    }
+    </script>
   </head>
   <body>
     <div id="termynal" data-termynal style="min-height: 34rem">
