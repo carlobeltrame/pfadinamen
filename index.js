@@ -19,7 +19,7 @@ function doneWorking() {
     document.getElementById('refresh-button').disabled = false
 }
 
-async function generateNames() {
+function generateNames() {
     startWorking();
 
     const header = "\n";
@@ -34,23 +34,30 @@ async function generateNames() {
         model.predict_on_batch(batch)
     */
     
-    for(let i=0; i<20; i++) {
-        let sample = -1;
-        while(sample !== newline_symbol) {
-            let batch;
-            if (sampled.length) {
-                batch = tf.fill([1,1], char_to_idx[sampled[sampled.length - 1]]);
-            } else {
-                batch = tf.fill([1,1], Math.floor(Math.random() * vocab_size));
-            }
-            result = await model.predict(batch).data();
-            sample = parseInt(Object.keys(idx_to_char)[randomChoice(result)]);
-            sampled.push(idx_to_char[sample]);
-            document.getElementById('names').innerHTML = sampled.join('').trim();
-        }
-    }
+    let remaining_newlines = 20;
 
-    doneWorking();
+    async function generateCharacter() {
+        if (remaining_newlines === 0) {
+            doneWorking();
+            return;
+        }
+
+        let batch;
+        if (sampled.length) {
+            batch = tf.fill([1,1], char_to_idx[sampled[sampled.length - 1]]);
+        } else {
+            batch = tf.fill([1,1], Math.floor(Math.random() * vocab_size));
+        }
+        result = await model.predict(batch).data();
+        sample = parseInt(Object.keys(idx_to_char)[randomChoice(result)]);
+        sampled.push(idx_to_char[sample]);
+        document.getElementById('names').innerHTML = sampled.join('').trim();
+
+        if (sample === newline_symbol) remaining_newlines--;
+
+        setTimeout(generateCharacter, 0);
+    }
+    generateCharacter();
 }
 
 Promise.all([fetch('model/1/char_to_idx.json'), tf.loadLayersModel('model/1/SavedModel-50-tfjs/model.json')]).then(async ([c2i_response, loaded_model]) => {
