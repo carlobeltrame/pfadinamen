@@ -48,7 +48,9 @@ Repeat the last command for a new set of 20 names, or add e.g. `--len 50` to gen
 The trained models are also saved in TensorFlow.js format, which allows to serve the models as static files and use them on the client (in JavaScript in the browser). This repository contains an index.html and index.js file, and can simply be deployed to any static file server. At least the following files must be deployed:
 
 * `index.html`
+* `style.css`
 * `termynal.css`
+* `spinner.svg`
 * `index.js`
 * `tf.min.js`
 * `sw.js`

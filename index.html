@@ -7,88 +7,8 @@
     <title>Pfadinamen-Generator</title>
     <script src="tf.min.js"></script>
     <link rel="stylesheet" href="termynal.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
-    <style>
-      [data-termynal]::after { content: 'Pfadinamen-Generator'; top: 12px }
-      @media screen and (max-width: 500px) {
-        [data-termynal]::after { content: 'Pfadinamen'; }
-      }
-      body {
-        --color-bg: #ddd;
-        --color-bg-alt: #ccc;
-        --color-text: #1a1e24;
-        --color-text-subtle: #787878;
-        min-height: 80vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        margin: 0;
-        padding: 1rem 0;
-      }
-      #background {
-        background: linear-gradient(to right, #3A1C71, #2D99C8, #BAD5AF);
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: -1;
-      }
-      [data-termynal] {
-        max-width: 90vw;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        overflow: hidden;
-      }
-      [data-ty-top] {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        padding: 15px 20px;
-        display: flex;
-        flex-direction: row-reverse;
-        align-items: center;
-      }
-      [data-ty-top] .spinner {
-        height: 1.5rem;
-        animation: rotate 1s steps(6) infinite;
-      }
-      [data-ty-bottom-bar] {
-        margin: 0 -45px -35px;
-        padding: 15px 20px;
-        display: flex;
-        flex-direction: row-reverse;
-        align-items: center;
-        background: var(--color-bg-alt);
-      }
-      [data-ty-bottom-bar] button {
-        background: #f4c025;
-        font-size: 1rem;
-        border: 0;
-        padding: 0.7rem 1.2rem;
-        border-radius: 4px;
-      }
-      [data-ty-bottom-bar] button:hover {
-        background: #F3BC16;
-      }
-      [data-ty-bottom-bar] button:disabled {
-        opacity: 50%;
-        background: #f4c025 !important;
-      }
-      @keyframes rotate {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-    </style>
     <script>
     if('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js', { scope: './' })
@@ -99,7 +19,7 @@
     <div id="background"></div>
     <div id="termynal" data-termynal style="min-height: 34rem">
       <div data-ty-top>
-        <object class="spinner" id="spinner" type="image/svg+xml" data="spinner.svg" class="logo"></object>
+        <object class="spinner" id="spinner" type="image/svg+xml" data="spinner.svg"></object>
       </div>
       <span style="white-space: pre; line-height: 1" id="names" data-ty></span>
       <div data-ty-bottom-bar>

@@ -5,8 +5,10 @@ self.addEventListener('install', e => {
     caches.open(cacheName).then(cache => {
       return cache.addAll([
         './',
+        './style.css',
         './termynal.css',
         './manifest.json',
+        './spinner.svg',
         './index.js',
         './tf.min.js',
         './model/1/char_to_idx.json',
