@@ -9,16 +9,18 @@ function randomChoice(weights) {
     return weights.filter(el => el <= rand).length;
 }
 
-function hideRefreshButton() {
+function startWorking() {
+    document.getElementById('spinner').style.display = 'initial'
     document.getElementById('refresh-button').disabled = true
 }
 
-function showRefreshButton() {
+function doneWorking() {
+    document.getElementById('spinner').style.display = 'none'
     document.getElementById('refresh-button').disabled = false
 }
 
 async function generateNames() {
-    hideRefreshButton();
+    startWorking();
 
     const header = "\n";
     const idx_to_char = Object.entries(char_to_idx).reduce((res, [c, i]) => { res[i] = c; return res; }, {});
@@ -48,7 +50,7 @@ async function generateNames() {
         }
     }
 
-    showRefreshButton();
+    doneWorking();
 }
 
 Promise.all([fetch('model/1/char_to_idx.json'), tf.loadLayersModel('model/1/SavedModel-50-tfjs/model.json')]).then(async ([c2i_response, loaded_model]) => {

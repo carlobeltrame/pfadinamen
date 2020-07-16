@@ -44,6 +44,20 @@
         justify-content: space-between;
         overflow: hidden;
       }
+      [data-ty-top] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 15px 20px;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+      }
+      [data-ty-top] .spinner {
+        height: 1.5rem;
+        animation: rotate 1s steps(6) infinite;
+      }
       [data-ty-bottom-bar] {
         margin: 0 -45px -35px;
         padding: 15px 20px;
@@ -66,6 +80,14 @@
         opacity: 50%;
         background: #f4c025 !important;
       }
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
     </style>
     <script>
     if('serviceWorker' in navigator) {
@@ -76,6 +98,9 @@
   <body>
     <div id="background"></div>
     <div id="termynal" data-termynal style="min-height: 34rem">
+      <div data-ty-top>
+        <object class="spinner" id="spinner" type="image/svg+xml" data="spinner.svg" class="logo"></object>
+      </div>
       <span style="white-space: pre; line-height: 1" id="names" data-ty></span>
       <div data-ty-bottom-bar>
         <button id="refresh-button" disabled="disabled" onclick="generateNames()">Nochmaaal &rsaquo;</button>
