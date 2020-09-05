@@ -51,6 +51,7 @@ body {
 }
 
 #spinner {
+  width: 1.5rem;
   height: 1.5rem;
   animation: 1s infinite steps(6) spin;
 }
