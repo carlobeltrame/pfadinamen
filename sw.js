@@ -9,6 +9,7 @@ self.addEventListener('install', e => {
         './termynal.css',
         './manifest.json',
         './spinner.svg',
+        './github.png',
         './index.js',
         './tf.min.js',
         './model/1/char_to_idx.json',

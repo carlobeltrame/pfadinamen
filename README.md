@@ -51,6 +51,7 @@ The trained models are also saved in TensorFlow.js format, which allows to serve
 * `style.css`
 * `termynal.css`
 * `spinner.svg`
+* `github.png`
 * `index.js`
 * `tf.min.js`
 * `sw.js`
