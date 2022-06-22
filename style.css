@@ -11,6 +11,15 @@
 #about::after {
   content: 'Wie funktioniert das?'; top: 12px
 }
+#about-fr::after {
+  content: 'Comment ça marche ?'; top: 12px
+}
+#about-it::after {
+  content: 'Come funziona?'; top: 12px
+}
+#about-en::after {
+  content: 'How does this work?'; top: 12px
+}
 
 body {
   --color-bg: #ddd;
@@ -76,6 +85,7 @@ body {
   padding: 15px 20px;
   display: flex;
   flex-direction: row-reverse;
+  gap: 0.7rem;
   align-items: center;
   background: var(--color-bg-alt);
   font-size: 1rem;
@@ -96,11 +106,11 @@ body {
 }
 
 /* Modal dialog using pure CSS */
-#modal-trigger {
+.modal-trigger {
   display: none;
 }
-#modal-trigger:checked ~ .modal,
-#modal-trigger:checked ~ .modal-background {
+.modal-trigger:checked ~ .modal,
+.modal-trigger:checked ~ .modal-background {
   display: block;
 }
 .modal-background {
@@ -146,7 +156,7 @@ body {
 .modal-trigger-label.desktop {
   display: none;
 }
-@media screen and (min-width: 512px) {
+@media screen and (min-width: 880px) {
   .modal-trigger-label.desktop {
     display: initial;
   }
