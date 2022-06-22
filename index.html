@@ -17,16 +17,95 @@
   </head>
   <body>
     <div id="background"></div>
-    <div id="termynal" data-termynal style="min-height: 34rem">
+    <div id="termynal" data-termynal class="three-buttons" style="min-height: 34rem">
       <div data-ty-top>
         <object class="spinner" id="spinner" type="image/svg+xml" data="spinner.svg"></object>
       </div>
       <span style="white-space: pre; line-height: 1" id="names" data-ty></span>
       <div data-ty-bottom-bar>
         <button id="refresh-button" disabled="disabled" onclick="generateNames()">Nochmaaal &rsaquo;</button>
-        <a href="https://github.com/carlobeltrame/pfadinamen" style="display: flex; margin: 0 1rem">
+        <a href="https://github.com/carlobeltrame/pfadinamen" style="display: none; /* display: flex; */ margin: 0 1rem">
           <img src="github.png" style="margin: 0.5rem; width: 1rem; height: 1rem;" alt="Quellcode auf GitHub" title="Wie funktioniert das? Etwas verbessern? Zum Quellcode auf GitHub!"/>
         </a>
+        <input type="checkbox" id="modal-trigger">
+        <label for="modal-trigger" class="modal-trigger-label desktop" style="margin: 0 1rem">Wie funktioniert das?</label>
+        <label for="modal-trigger" class="modal-trigger-label mobile" style="margin: 0 1rem">Info</label>
+        <label for="modal-trigger" class="modal-background"></label>
+        <div data-termynal class="modal closeable" id="about" style="padding: 3rem 45px 15px">
+          <label for="modal-trigger"></label>
+          <div class="modal-content">
+            <p>
+              Diese Webseite generiert mit künstlicher Intelligenz auf Knopfdruck neue Pfadinamen.
+            </p>
+
+            <label for="toggle-1" class="collapse-trigger-label">&rsaquo; Was ist künstliche Intelligenz?</label>
+            <input type="checkbox" id="toggle-1" class="collapse-trigger" />
+            <div class="collapsible">
+              <p>
+                Künstliche Intelligenz ist ein Begriff für Software, die <b>menschliches Verhalten</b> nachahmt.
+                Zum Beispiel ist ein Computergegner bei einem Videogame eine künstliche Intelligenz.
+              </p>
+              <p>
+                Ein Unterbereich davon ist das sogenannte "<b>machine learning</b>".
+                So nennen wir es wenn in der Software nicht explizite Verhaltensregeln einprogrammiert sind, sondern das Programm anhand von vielen Beispielen selber lernt, wie es sich verhalten soll.
+              </p>
+            </div>
+            <label for="toggle-2" class="collapse-trigger-label">&rsaquo; Wie funktioniert dieser Generator?</label>
+            <input type="checkbox" id="toggle-2" class="collapse-trigger" />
+            <div class="collapsible">
+              <p>
+                Dieser Generator enthält eine machine learning Software namens <i>char-rnn</i>.
+                Diese wurde mit einer Liste von <b>20'000 Pfadinamen</b>, Cevinamen und Jublanamen trainiert.
+                Das Programm hat so gelernt, wie Pfadinamen normalerweise aussehen.
+              </p>
+              <p>
+                Die Namen werden <b>Buchstabe für Buchstabe</b> generiert.
+                Das Programm schaut immer die bisher generierten Buchstaben an, und berechnet dann, welche Buchstaben als nächstes wie gut hinpassen.
+              </p>
+              <p>
+                Wenn zum Beispiel bisher <i>Tarant...</i> generiert wurde, dann wird wohl als nächstes ein <i>u</i> besser passen als ein <i>x</i> oder ein <i>P</i>.
+                Der Generator wählt immer zufällig aus allen Buchstaben die er kennt aus, welchen Buchstaben er als nächstes schreiben soll.
+                Aber je passender ein Buchstabe ist, desto höher ist die Chance dass der Generator diesen Buchstaben auswählt.
+              </p>
+            </div>
+            <label for="toggle-3" class="collapse-trigger-label">&rsaquo; Wer hat das gemacht?</label>
+            <input type="checkbox" id="toggle-3" class="collapse-trigger" />
+            <div class="collapsible">
+              <p>
+                Diesen Pfadinamen-Generator hat Carlo Beltrame / Cosinus aus der Pfadi Gloggi in Zürich programmiert.
+              </p>
+              <p>
+                Es war eine Idee die ich schon lange mal hatte, sobald ich den Artikel "The Unreasonable Effectiveness of Recurrent Neural Networks" von Andrej Karpathy gelesen habe.
+                Gemäss meinen Tests sind ungefähr drei Viertel der ausgespuckten Pfadinamen neuartig (d.h. nicht in der Liste der Trainingsdaten vorhanden).
+              </p>
+              <p>
+                Das Programm ist als Open Source auf GitHub veröffentlicht.
+                Wenn du einen Verbesserungsvorschlag oder eine Idee für ein weiteres Feature hast, kannst du dich gerne bei mir unter <i>cosinus (ät) gloggi (punkt) ch</i> oder unter https://github.com/carlobeltrame/pfadinamen melden.
+              </p>
+            </div>
+            <label for="toggle-4" class="collapse-trigger-label">&rsaquo; Darf ich das bei mir in der Pfadi brauchen?</label>
+            <input type="checkbox" id="toggle-4" class="collapse-trigger" />
+            <div class="collapsible">
+              <p>
+                Ja, klar. Du kannst einfach auf <b>https://pfadinamen.dahätsdi.ch</b> gehen.
+                Wenn du erst mal drauf warst, müsste es von dann an sogar funktionieren wenn du mal im Lager keine Internetverbindung hast.
+              </p>
+              <p>
+                Denk daran: Die Kinder in der Pfadi freuen sich darüber, wenn du Pfadinamen für sie auswählst, die wirklich zu ihnen passen.
+                Vielleicht solltest du daher die generierten Namen noch googeln, um sicherzugehen dass sie nichts unerwartetes bedeuten.
+                Oder du kannst den Generator auch nur zur Inspiration verwenden.
+              </p>
+              <p>
+                Achtung: Die künstliche Intelligenz ist sich nicht bewusst, wenn sie je mal etwas offensives ausspuckt.
+                Sie versucht nur so gut es geht, die Namen aus den Trainingsdaten nachzuahmen.
+                Wenn dich ein Name persönlich stört, klickst du am besten einfach auf den <i>Nochmaaal</i>-Knopf.
+              </p>
+              <p>
+                <b>Viel Spass beim Namen generieren!</b>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <script src="./index.js"></script>

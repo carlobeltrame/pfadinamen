@@ -35,10 +35,13 @@
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    /* A little hack to display the window buttons in one pseudo element. */
     background: #d9515d;
+}
+
+[data-termynal].three-buttons:before {
+    /* A little hack to display the window buttons in one pseudo element. */
     -webkit-box-shadow: 25px 0 0 #f4c025, 50px 0 0 #3ec930;
-            box-shadow: 25px 0 0 #f4c025, 50px 0 0 #3ec930;
+    box-shadow: 25px 0 0 #f4c025, 50px 0 0 #3ec930;
 }
 
 [data-termynal]:after {
