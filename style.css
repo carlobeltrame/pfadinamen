@@ -172,12 +172,38 @@ body {
   overflow-y: scroll;
 }
 
-/* Collapsable divs using pure CSS */
+/* Animated collapsable divs using pure CSS */
+@keyframes fadein {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
 .collapse-trigger, .collapsible {
   display: none;
+  opacity: 0;
 }
-.collapse-trigger:checked + .collapsible {
+.collapse-trigger + label::before {
+  content: '›';
+  display: inline-block;
+  margin-right: 1ch;
+  transition: transform 0.2s ease-in-out;
+}
+.collapse-trigger:checked + label::before {
+  transform: rotate(90deg);
+}
+.collapse-trigger:checked + label + .collapsible {
   display: block;
+  opacity: 1;
+  animation: fadein 0.5s ease-out;
 }
 .collapse-trigger-label {
   display: block;
