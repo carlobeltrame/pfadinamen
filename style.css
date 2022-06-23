@@ -85,7 +85,6 @@ body {
   padding: 15px 20px;
   display: flex;
   flex-direction: row-reverse;
-  gap: 0.7rem;
   align-items: center;
   background: var(--color-bg-alt);
   font-size: 1rem;
@@ -103,6 +102,12 @@ body {
 [data-ty-bottom-bar] button:disabled {
   opacity: 50%;
   background: #f4c025 !important;
+}
+[data-ty-bottom-bar] > * {
+  margin-right: 0.7rem;
+}
+[data-ty-bottom-bar] > *:first-child {
+  margin-right: 0;
 }
 
 /* Modal dialog using pure CSS */
