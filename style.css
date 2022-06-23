@@ -2,25 +2,6 @@
   content: ''
 }
 
-#termynal::after {
-  content: 'Pfadinamen-Generator'; top: 12px
-}
-@media screen and (max-width: 500px) {
-  #termynal::after { content: 'Pfadinamen'; }
-}
-#about::after {
-  content: 'Wie funktioniert das?'; top: 12px
-}
-#about-fr::after {
-  content: 'Comment ça marche ?'; top: 12px
-}
-#about-it::after {
-  content: 'Come funziona?'; top: 12px
-}
-#about-en::after {
-  content: 'How does this work?'; top: 12px
-}
-
 body {
   --color-bg: #ddd;
   --color-bg-alt: #ccc;
@@ -61,12 +42,13 @@ body {
   left: 0;
   right: 0;
   padding: 10px 20px;
-  display: flex;
-  flex-direction: row-reverse;
   align-items: center;
 }
 
 #spinner {
+  position: absolute;
+  top: 10px;
+  right: 20px;
   width: 1.5rem;
   height: 1.5rem;
   animation: 1s infinite steps(6) spin;
@@ -79,17 +61,28 @@ body {
     transform: rotate(360deg);
   }
 }
-
+[data-ty-top] h1 {
+  margin: 2px 0;
+  font-size: 1.2em;
+  text-align: center;
+}
+[data-ty-top] h2 {
+  margin: 4px 0;
+  font-size: 1em;
+  text-align: center;
+}
 [data-ty-bottom-bar] {
   margin: 0 -45px -35px;
   padding: 15px 20px;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
+  justify-content: flex-end;
   align-items: center;
   background: var(--color-bg-alt);
   font-size: 1rem;
 }
 [data-ty-bottom-bar] button {
+  order: 100;
   background: #f4c025;
   font-size: 1rem;
   border: 0;
@@ -112,7 +105,9 @@ body {
 
 /* Modal dialog using pure CSS */
 .modal-trigger {
-  display: none;
+  position: fixed;
+  top: -999px;
+  left: -999px;
 }
 .modal-trigger:checked ~ .modal,
 .modal-trigger:checked ~ .modal-background {
@@ -155,23 +150,29 @@ body {
   cursor: pointer;
   font-family: Ubuntu, Arial, Helvetica, sans-serif;
 }
+.modal-trigger-label {
+  position: relative;
+}
 .modal-trigger-label:hover {
   text-decoration: underline;
 }
-.modal-trigger-label.desktop {
+[data-ty-bottom-bar] button:focus, .modal-trigger:focus ~ .modal-trigger-label, .modal-trigger:focus ~ .modal > .modal-close-trigger, .collapse-trigger:focus + .collapse-trigger-label {
+  outline: 2px solid #e95420;
+}
+.desktop {
   display: none;
 }
 @media screen and (min-width: 880px) {
-  .modal-trigger-label.desktop {
-    display: initial;
+  .desktop {
+    display: block;
   }
-  .modal-trigger-label.mobile {
+  .mobile {
     display: none;
   }
 }
 .modal-content {
-  margin-right: -45px;
-  padding-right: 45px;
+  margin: 0 -45px;
+  padding: 0 45px;
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -192,20 +193,25 @@ body {
     opacity: 1;
   }
 }
-.collapse-trigger, .collapsible {
+.collapse-trigger {
+  position: fixed;
+  top: -999px;
+  left: -999px;
+}
+.collapsible {
   display: none;
   opacity: 0;
 }
-.collapse-trigger + label::before {
+.collapse-trigger + .collapse-trigger-label::before {
   content: '›';
   display: inline-block;
   margin-right: 1ch;
   transition: transform 0.2s ease-in-out;
 }
-.collapse-trigger:checked + label::before {
+.collapse-trigger:checked + .collapse-trigger-label::before {
   transform: rotate(90deg);
 }
-.collapse-trigger:checked + label + .collapsible {
+.collapse-trigger:checked + .collapse-trigger-label + .collapsible {
   display: block;
   opacity: 1;
   animation: fadein 0.5s ease-out;

@@ -18,188 +18,118 @@
   <body>
     <div id="background"></div>
     <div id="termynal" data-termynal class="three-buttons" style="min-height: 34rem">
-      <div data-ty-top>
-        <object class="spinner" id="spinner" type="image/svg+xml" data="spinner.svg"></object>
-      </div>
-      <span style="white-space: pre; line-height: 1" id="names" data-ty></span>
-      <div data-ty-bottom-bar>
+      <header data-ty-top>
+        <h1 class="desktop">Pfadinamen-Generator</h1>
+        <h1 class="mobile">Pfadinamen</h1>
+        <object class="spinner" id="spinner" type="image/svg+xml" data="spinner.svg" aria-hidden="true"></object>
+      </header>
+      <main style="display: inline; white-space: pre; line-height: 1" id="names" data-ty></main>
+      <footer data-ty-bottom-bar>
         <button id="refresh-button" disabled="disabled" onclick="generateNames()">Nochmaaal &rsaquo;</button>
         <a href="https://github.com/carlobeltrame/pfadinamen" style="display: none; /* display: flex; */">
           <img src="github.png" style="margin: 0.5rem; width: 1rem; height: 1rem;" alt="Quellcode auf GitHub" title="Wie funktioniert das? Etwas verbessern? Zum Quellcode auf GitHub!"/>
         </a>
 
         <div>
-          <input type="checkbox" id="modal-trigger-en" class="modal-trigger">
-          <label for="modal-trigger-en" class="modal-trigger-label desktop">How does this work?</label>
-          <label for="modal-trigger-en" class="modal-trigger-label mobile">EN</label>
-          <label for="modal-trigger-en" class="modal-background"></label>
-          <div data-termynal class="modal closeable" id="about-en" style="padding: 3rem 45px 15px">
-            <label for="modal-trigger-en"></label>
-            <div class="modal-content">
+          <input type="checkbox" id="modal-trigger-de" class="modal-trigger">
+          <label for="modal-trigger-de" class="modal-trigger-label">
+            <span class="desktop">Wie funktioniert das?</span>
+            <span class="mobile">Info DE</span>
+          </label>
+          <label for="modal-trigger-de" class="modal-background"></label>
+          <div data-termynal class="modal closeable" id="about" style="padding: 3rem 45px 15px" role="dialog" aria-labelledby="dialog-title-de" aria-describedby="modal-content-de">
+            <header data-ty-top>
+              <h2 id="dialog-title-de" class="desktop">Wie funktioniert das?</h2>
+            </header>
+            <label class="modal-close-trigger" for="modal-trigger-de"></label>
+            <article id="modal-content-de" class="modal-content">
               <p>
-                This website generates new scout names using artificial intelligence.
+                Diese Webseite generiert mit künstlicher Intelligenz auf Knopfdruck neue Pfadinamen.
               </p>
 
-              <input type="checkbox" id="toggle-1-en" class="collapse-trigger" />
-              <label for="toggle-1-en" class="collapse-trigger-label">What is artificial intelligence?</label>
+              <input type="checkbox" id="toggle-1-de" class="collapse-trigger" />
+              <label for="toggle-1-de" class="collapse-trigger-label">Was ist künstliche Intelligenz?</label>
               <div class="collapsible">
                 <p>
-                  Artificial intelligence is software which imitates <b>human behaviour</b>.
-                  For example, an NPC in a video game is an artificial intelligence.
+                  Künstliche Intelligenz ist ein Begriff für Software, die <b>menschliches Verhalten</b> nachahmt.
+                  Zum Beispiel ist ein Computergegner bei einem Videogame eine künstliche Intelligenz.
                 </p>
                 <p>
-                  One discipline of artificial intelligence is the so-called "<b>Machine Learning</b>".
-                  That is when a program does not have explicit behaviour rules programmed in, but rather learns from many examples how to behave.
+                  Ein Unterbereich davon ist das sogenannte "<b>machine learning</b>".
+                  So nennen wir es wenn in der Software nicht explizite Verhaltensregeln einprogrammiert sind, sondern das Programm anhand von vielen Beispielen selber lernt, wie es sich verhalten soll.
                 </p>
               </div>
-              <input type="checkbox" id="toggle-2-en" class="collapse-trigger" />
-              <label for="toggle-2-en" class="collapse-trigger-label">How does this generator work?</label>
+              <input type="checkbox" id="toggle-2-de" class="collapse-trigger" />
+              <label for="toggle-2-de" class="collapse-trigger-label">Wie funktioniert dieser Generator?</label>
               <div class="collapsible">
                 <p>
-                  This generator contains machine learning software called <i>char-rnn</i>.
-                  It was trained using a list of <b>20000 scout names</b>, JuBla names and YMCA names.
-                  This way the program has learned what scout names normally look like.
+                  Dieser Generator enthält eine machine learning Software namens <i>char-rnn</i>.
+                  Diese wurde mit einer Liste von <b>20'000 Pfadinamen</b>, Cevinamen und Jublanamen trainiert.
+                  Das Programm hat so gelernt, wie Pfadinamen normalerweise aussehen.
                 </p>
                 <p>
-                  The scout names are generated <b>letter by letter</b>.
-                  The program looks at the already generated letters, and calculates which letters fit next and how well.
+                  Die Namen werden <b>Buchstabe für Buchstabe</b> generiert.
+                  Das Programm schaut immer die bisher generierten Buchstaben an, und berechnet dann, welche Buchstaben als nächstes wie gut hinpassen.
                 </p>
                 <p>
-                  For example, if <i>Tarant...</i> has already been generated, a <i>u</i> will probably fit better as the next letter than an <i>x</i> or a <i>P</i>.
-                  The generator always randomly chooses the next letter it writes from all the letters it knows.
-                  But the better a letter fits, the higher it's change of getting picked by the generator.
+                  Wenn zum Beispiel bisher <i>Tarant...</i> generiert wurde, dann wird wohl als nächstes ein <i>u</i> besser passen als ein <i>x</i> oder ein <i>P</i>.
+                  Der Generator wählt immer zufällig aus allen Buchstaben die er kennt aus, welchen Buchstaben er als nächstes schreiben soll.
+                  Aber je passender ein Buchstabe ist, desto höher ist die Chance dass der Generator diesen Buchstaben auswählt.
                 </p>
               </div>
-              <input type="checkbox" id="toggle-3-en" class="collapse-trigger" />
-              <label for="toggle-3-en" class="collapse-trigger-label">Who created this?</label>
+              <input type="checkbox" id="toggle-3-de" class="collapse-trigger" />
+              <label for="toggle-3-de" class="collapse-trigger-label">Wer hat das gemacht?</label>
               <div class="collapsible">
                 <p>
-                  This scout name generator was programmed by Carlo Beltrame / Cosinus from Gloggi in Zürich.
+                  Diesen Pfadinamen-Generator hat Carlo Beltrame / Cosinus aus der Pfadi Gloggi in Zürich programmiert.
                 </p>
                 <p>
-                  It was an idea I have had for a long time, ever since I read the article "The Unreasonable Effectiveness of Recurrent Neural Networks" by Andrej Karpathy.
-                  According to my tests, around three out of four of the generated scout names are completely new (i.e. not present in the training data).
+                  Es war eine Idee die ich schon lange mal hatte, sobald ich den Artikel "The Unreasonable Effectiveness of Recurrent Neural Networks" von Andrej Karpathy gelesen habe.
+                  Gemäss meinen Tests sind ungefähr drei Viertel der ausgespuckten Pfadinamen neuartig (d.h. nicht in der Liste der Trainingsdaten vorhanden).
                 </p>
                 <p>
-                  The program is published as open source on GitHub.
-                  If you have an idea for an improvement or new feature, you can contact me at <i>cosinus (at) gloggi (dot) ch</i> or at https://github.com/carlobeltrame/pfadinamen.
+                  Das Programm ist als Open Source auf GitHub veröffentlicht.
+                  Wenn du einen Verbesserungsvorschlag oder eine Idee für ein weiteres Feature hast, kannst du dich gerne bei mir unter <i>cosinus (ät) gloggi (punkt) ch</i> oder unter https://github.com/carlobeltrame/pfadinamen melden.
                 </p>
               </div>
-              <input type="checkbox" id="toggle-4-en" class="collapse-trigger" />
-              <label for="toggle-4-en" class="collapse-trigger-label">May I use this in my scouts group?</label>
+              <input type="checkbox" id="toggle-4-de" class="collapse-trigger" />
+              <label for="toggle-4-de" class="collapse-trigger-label">Darf ich das bei mir in der Pfadi brauchen?</label>
               <div class="collapsible">
                 <p>
-                  Yes, sure. You can simply visit <b>https://pfadinamen.gloggi.ch</b>.
-                  If your browser supports it, you can even install the generator like an app to your home screen or desktop.
+                  Ja, klar. Du kannst einfach auf <b>https://pfadinamen.dahätsdi.ch</b> gehen.
+                  Wenn dein Browser es unterstützt kannst du den Generator sogar wie eine App auf den Home Screen oder Desktop installieren.
                 </p>
                 <p>
-                  Keep in mind: Scout kids prefer to get scout names which really suit them well.
-                  Maybe you should google the generated scout names to make sure they don't have any unexpected meaning.
-                  Or you could use the generator for inspiration only.
+                  Denk daran: Die Kinder in der Pfadi freuen sich darüber, wenn du Pfadinamen für sie auswählst, die wirklich zu ihnen passen.
+                  Vielleicht solltest du daher die generierten Namen noch googeln, um sicherzugehen dass sie nichts unerwartetes bedeuten.
+                  Oder du kannst den Generator auch nur zur Inspiration verwenden.
                 </p>
                 <p>
-                  Caution: The artificial intelligence is not aware of whether its output is considered offensive.
-                  It only tries to imitate the scout names from the training data as best as it can.
-                  If a name offends you personally, it's best to just click the <i>Nochmaaal</i> button once more.
+                  Achtung: Die künstliche Intelligenz ist sich nicht bewusst, wenn sie je mal etwas offensives ausspuckt.
+                  Sie versucht nur so gut es geht, die Namen aus den Trainingsdaten nachzuahmen.
+                  Wenn dich ein Name persönlich stört, klickst du am besten einfach auf den <i>Nochmaaal</i>-Knopf.
                 </p>
                 <p>
-                  <b>Have fun generating scout names!</b>
+                  <b>Viel Spass beim Namen generieren!</b>
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <input type="checkbox" id="modal-trigger-it" class="modal-trigger">
-          <label for="modal-trigger-it" class="modal-trigger-label desktop">Come funziona?</label>
-          <label for="modal-trigger-it" class="modal-trigger-label mobile">IT</label>
-          <label for="modal-trigger-it" class="modal-background"></label>
-          <div data-termynal class="modal closeable" id="about-it" style="padding: 3rem 45px 15px">
-            <label for="modal-trigger-it"></label>
-            <div class="modal-content">
-              <p>
-                Questo sito web genera nuovi totem utilizzando l'intelligenza artificiale.
-              </p>
-
-              <input type="checkbox" id="toggle-1-it" class="collapse-trigger" />
-              <label for="toggle-1-it" class="collapse-trigger-label">Che cos'è l'intelligenza artificiale?</label>
-              <div class="collapsible">
-                <p>
-                  L'intelligenza artificiale è un software che imita il <b>comportamento umano</b>.
-                  Ad esempio, un personaggio non giocante in un videogioco è un'intelligenza artificiale.
-                </p>
-                <p>
-                  Una disciplina dell'intelligenza artificiale è il cosiddetto "<b>Machine Learning</b>".
-                  Questo avviene quando un programma non ha regole di comportamento esplicite programmate, ma impara da molti esempi come comportarsi.
-                </p>
-              </div>
-              <input type="checkbox" id="toggle-2-it" class="collapse-trigger" />
-              <label for="toggle-2-it" class="collapse-trigger-label">Come funziona questo generatore?</label>
-              <div class="collapsible">
-                <p>
-                  Questo generatore contiene un software Machine Learning chiamato <i>char-rnn</i>.
-                  È stato addestrato utilizzando un elenco di <b>20000 totem</b> degli scout, JuBla e dell'YMCA.
-                  In questo modo il programma ha imparato a conoscere l'aspetto dei totem.
-                </p>
-                <p>
-                  I totem vengono generati <b>lettera per lettera</b>.
-                  Il programma esamina le lettere già generate e calcola quali lettere si adattano alle successive e in che misura.
-                </p>
-                <p>
-                  Ad esempio, se <i>Tarant...</i> è già stato generato, una <i>u</i> sarà probabilmente più adatta di una <i>x</i> o di una <i>P</i>.
-                  Il generatore sceglie sempre in modo casuale la lettera successiva da scrivere tra tutte le lettere che conosce.
-                  Ma più una lettera si adatta, più alta è la possibilità che venga scelta dal generatore.
-                </p>
-              </div>
-              <input type="checkbox" id="toggle-3-it" class="collapse-trigger" />
-              <label for="toggle-3-it" class="collapse-trigger-label">Chi l'ha creato?</label>
-              <div class="collapsible">
-                <p>
-                  Questo generatore di totem è stato programmato da Carlo Beltrame / Cosinus di Gloggi a Zurigo.
-                </p>
-                <p>
-                  Era un'idea che avevo da tempo, da quando avevo letto l'articolo "The Unreasonable Effectiveness of Recurrent Neural Networks" di Andrej Karpathy.
-                  Secondo i miei test, circa tre su quattro dei totem generati sono completamente nuovi (cioè non presenti nei dati di allenamento).
-                </p>
-                <p>
-                  Il programma è pubblicato come open source su GitHub.
-                  Se avete un'idea per un miglioramento o una nuova funzionalità, potete contattarmi all'indirizzo <i>cosinus (at) gloggi (punto) ch</i> o all'indirizzo https://github.com/carlobeltrame/pfadinamen.
-                </p>
-              </div>
-              <input type="checkbox" id="toggle-4-it" class="collapse-trigger" />
-              <label for="toggle-4-it" class="collapse-trigger-label">Posso usarlo nel mio gruppo scout?</label>
-              <div class="collapsible">
-                <p>
-                  Sì, certo. È sufficiente visitare il sito <b>https://pfadinamen.gloggi.ch</b>.
-                  Se il vostro browser lo supporta, potete anche installare il generatore come un'app sulla vostra home screen o sul desktop.
-                </p>
-                <p>
-                  Tenete presente: I ragazzi scout preferiscono ottenere totem che siano davvero adatti a loro.
-                  Forse dovresti cercare su Google i nomi degli scout generati per assicurarti che non abbiano un significato inaspettato.
-                  Oppure si può usare il generatore solo come ispirazione.
-                </p>
-                <p>
-                  Attenzione: L'intelligenza artificiale non sa se i suoi risultati sono considerati offensivi.
-                  Cerca solo di imitare al meglio i nomi dei ricognitori presenti nei dati di addestramento.
-                  Se un nome vi offende personalmente, è meglio cliccare ancora una volta sul tasto <i>Nochmaaal</i>.
-                </p>
-                <p>
-                  <b>Divertitevi a generare totem!</b>
-                </p>
-              </div>
-            </div>
+            </article>
           </div>
         </div>
 
         <div>
           <input type="checkbox" id="modal-trigger-fr" class="modal-trigger">
-          <label for="modal-trigger-fr" class="modal-trigger-label desktop">Comment ça marche ?</label>
-          <label for="modal-trigger-fr" class="modal-trigger-label mobile">FR</label>
+          <label for="modal-trigger-fr" class="modal-trigger-label">
+            <span class="desktop">Comment ça marche ?</span>
+            <span class="mobile">FR</span>
+          </label>
           <label for="modal-trigger-fr" class="modal-background"></label>
-          <div data-termynal class="modal closeable" id="about-fr" style="padding: 3rem 45px 15px">
-            <label for="modal-trigger-fr"></label>
-            <div class="modal-content">
+          <div data-termynal class="modal closeable" id="about-fr" style="padding: 3rem 45px 15px" role="dialog" aria-labelledby="dialog-title-fr" aria-describedby="modal-content-fr">
+            <header data-ty-top>
+              <h1 id="dialog-title-fr" class="desktop">Comment ça marche ?</h1>
+            </header>
+            <label class="modal-close-trigger" for="modal-trigger-fr"></label>
+            <article id="modal-content-fr" class="modal-content">
               <p>
                 Ce site web génère de nouveaux totems grâce à l'intelligence artificielle.
               </p>
@@ -270,94 +200,186 @@
                   <b>Amuse-toi à créer des totems !</b>
                 </p>
               </div>
-            </div>
+            </article>
           </div>
         </div>
 
         <div>
-          <input type="checkbox" id="modal-trigger-de" class="modal-trigger">
-          <label for="modal-trigger-de" class="modal-trigger-label desktop">Wie funktioniert das?</label>
-          <label for="modal-trigger-de" class="modal-trigger-label mobile">Info DE</label>
-          <label for="modal-trigger-de" class="modal-background"></label>
-          <div data-termynal class="modal closeable" id="about" style="padding: 3rem 45px 15px">
-            <label for="modal-trigger-de"></label>
-            <div class="modal-content">
+          <input type="checkbox" id="modal-trigger-it" class="modal-trigger">
+          <label for="modal-trigger-it" class="modal-trigger-label">
+            <span class="desktop">Come funziona?</span>
+            <span class="mobile">IT</span>
+          </label>
+          <label for="modal-trigger-it" class="modal-background"></label>
+          <div data-termynal class="modal closeable" id="about-it" style="padding: 3rem 45px 15px" role="dialog" aria-labelledby="dialog-title-it" aria-describedby="modal-content-it">
+            <header data-ty-top>
+              <h1 id="dialog-title-it" class="desktop">Come funziona?</h1>
+            </header>
+            <label class="modal-close-trigger" for="modal-trigger-it"></label>
+            <article id="modal-content-it" class="modal-content">
               <p>
-                Diese Webseite generiert mit künstlicher Intelligenz auf Knopfdruck neue Pfadinamen.
+                Questo sito web genera nuovi totem utilizzando l'intelligenza artificiale.
               </p>
 
-              <input type="checkbox" id="toggle-1" class="collapse-trigger" />
-              <label for="toggle-1" class="collapse-trigger-label">Was ist künstliche Intelligenz?</label>
+              <input type="checkbox" id="toggle-1-it" class="collapse-trigger" />
+              <label for="toggle-1-it" class="collapse-trigger-label">Che cos'è l'intelligenza artificiale?</label>
               <div class="collapsible">
                 <p>
-                  Künstliche Intelligenz ist ein Begriff für Software, die <b>menschliches Verhalten</b> nachahmt.
-                  Zum Beispiel ist ein Computergegner bei einem Videogame eine künstliche Intelligenz.
+                  L'intelligenza artificiale è un software che imita il <b>comportamento umano</b>.
+                  Ad esempio, un personaggio non giocante in un videogioco è un'intelligenza artificiale.
                 </p>
                 <p>
-                  Ein Unterbereich davon ist das sogenannte "<b>machine learning</b>".
-                  So nennen wir es wenn in der Software nicht explizite Verhaltensregeln einprogrammiert sind, sondern das Programm anhand von vielen Beispielen selber lernt, wie es sich verhalten soll.
+                  Una disciplina dell'intelligenza artificiale è il cosiddetto "<b>Machine Learning</b>".
+                  Questo avviene quando un programma non ha regole di comportamento esplicite programmate, ma impara da molti esempi come comportarsi.
                 </p>
               </div>
-              <input type="checkbox" id="toggle-2" class="collapse-trigger" />
-              <label for="toggle-2" class="collapse-trigger-label">Wie funktioniert dieser Generator?</label>
+              <input type="checkbox" id="toggle-2-it" class="collapse-trigger" />
+              <label for="toggle-2-it" class="collapse-trigger-label">Come funziona questo generatore?</label>
               <div class="collapsible">
                 <p>
-                  Dieser Generator enthält eine machine learning Software namens <i>char-rnn</i>.
-                  Diese wurde mit einer Liste von <b>20'000 Pfadinamen</b>, Cevinamen und Jublanamen trainiert.
-                  Das Programm hat so gelernt, wie Pfadinamen normalerweise aussehen.
+                  Questo generatore contiene un software Machine Learning chiamato <i>char-rnn</i>.
+                  È stato addestrato utilizzando un elenco di <b>20000 totem</b> degli scout, JuBla e dell'YMCA.
+                  In questo modo il programma ha imparato a conoscere l'aspetto dei totem.
                 </p>
                 <p>
-                  Die Namen werden <b>Buchstabe für Buchstabe</b> generiert.
-                  Das Programm schaut immer die bisher generierten Buchstaben an, und berechnet dann, welche Buchstaben als nächstes wie gut hinpassen.
+                  I totem vengono generati <b>lettera per lettera</b>.
+                  Il programma esamina le lettere già generate e calcola quali lettere si adattano alle successive e in che misura.
                 </p>
                 <p>
-                  Wenn zum Beispiel bisher <i>Tarant...</i> generiert wurde, dann wird wohl als nächstes ein <i>u</i> besser passen als ein <i>x</i> oder ein <i>P</i>.
-                  Der Generator wählt immer zufällig aus allen Buchstaben die er kennt aus, welchen Buchstaben er als nächstes schreiben soll.
-                  Aber je passender ein Buchstabe ist, desto höher ist die Chance dass der Generator diesen Buchstaben auswählt.
+                  Ad esempio, se <i>Tarant...</i> è già stato generato, una <i>u</i> sarà probabilmente più adatta di una <i>x</i> o di una <i>P</i>.
+                  Il generatore sceglie sempre in modo casuale la lettera successiva da scrivere tra tutte le lettere che conosce.
+                  Ma più una lettera si adatta, più alta è la possibilità che venga scelta dal generatore.
                 </p>
               </div>
-              <input type="checkbox" id="toggle-3" class="collapse-trigger" />
-              <label for="toggle-3" class="collapse-trigger-label">Wer hat das gemacht?</label>
+              <input type="checkbox" id="toggle-3-it" class="collapse-trigger" />
+              <label for="toggle-3-it" class="collapse-trigger-label">Chi l'ha creato?</label>
               <div class="collapsible">
                 <p>
-                  Diesen Pfadinamen-Generator hat Carlo Beltrame / Cosinus aus der Pfadi Gloggi in Zürich programmiert.
+                  Questo generatore di totem è stato programmato da Carlo Beltrame / Cosinus di Gloggi a Zurigo.
                 </p>
                 <p>
-                  Es war eine Idee die ich schon lange mal hatte, sobald ich den Artikel "The Unreasonable Effectiveness of Recurrent Neural Networks" von Andrej Karpathy gelesen habe.
-                  Gemäss meinen Tests sind ungefähr drei Viertel der ausgespuckten Pfadinamen neuartig (d.h. nicht in der Liste der Trainingsdaten vorhanden).
+                  Era un'idea che avevo da tempo, da quando avevo letto l'articolo "The Unreasonable Effectiveness of Recurrent Neural Networks" di Andrej Karpathy.
+                  Secondo i miei test, circa tre su quattro dei totem generati sono completamente nuovi (cioè non presenti nei dati di allenamento).
                 </p>
                 <p>
-                  Das Programm ist als Open Source auf GitHub veröffentlicht.
-                  Wenn du einen Verbesserungsvorschlag oder eine Idee für ein weiteres Feature hast, kannst du dich gerne bei mir unter <i>cosinus (ät) gloggi (punkt) ch</i> oder unter https://github.com/carlobeltrame/pfadinamen melden.
+                  Il programma è pubblicato come open source su GitHub.
+                  Se avete un'idea per un miglioramento o una nuova funzionalità, potete contattarmi all'indirizzo <i>cosinus (at) gloggi (punto) ch</i> o all'indirizzo https://github.com/carlobeltrame/pfadinamen.
                 </p>
               </div>
-              <input type="checkbox" id="toggle-4" class="collapse-trigger" />
-              <label for="toggle-4" class="collapse-trigger-label">Darf ich das bei mir in der Pfadi brauchen?</label>
+              <input type="checkbox" id="toggle-4-it" class="collapse-trigger" />
+              <label for="toggle-4-it" class="collapse-trigger-label">Posso usarlo nel mio gruppo scout?</label>
               <div class="collapsible">
                 <p>
-                  Ja, klar. Du kannst einfach auf <b>https://pfadinamen.dahätsdi.ch</b> gehen.
-                  Wenn dein Browser es unterstützt kannst du den Generator sogar wie eine App auf den Home Screen oder Desktop installieren.
+                  Sì, certo. È sufficiente visitare il sito <b>https://pfadinamen.gloggi.ch</b>.
+                  Se il vostro browser lo supporta, potete anche installare il generatore come un'app sulla vostra home screen o sul desktop.
                 </p>
                 <p>
-                  Denk daran: Die Kinder in der Pfadi freuen sich darüber, wenn du Pfadinamen für sie auswählst, die wirklich zu ihnen passen.
-                  Vielleicht solltest du daher die generierten Namen noch googeln, um sicherzugehen dass sie nichts unerwartetes bedeuten.
-                  Oder du kannst den Generator auch nur zur Inspiration verwenden.
+                  Tenete presente: I ragazzi scout preferiscono ottenere totem che siano davvero adatti a loro.
+                  Forse dovresti cercare su Google i nomi degli scout generati per assicurarti che non abbiano un significato inaspettato.
+                  Oppure si può usare il generatore solo come ispirazione.
                 </p>
                 <p>
-                  Achtung: Die künstliche Intelligenz ist sich nicht bewusst, wenn sie je mal etwas offensives ausspuckt.
-                  Sie versucht nur so gut es geht, die Namen aus den Trainingsdaten nachzuahmen.
-                  Wenn dich ein Name persönlich stört, klickst du am besten einfach auf den <i>Nochmaaal</i>-Knopf.
+                  Attenzione: L'intelligenza artificiale non sa se i suoi risultati sono considerati offensivi.
+                  Cerca solo di imitare al meglio i nomi dei ricognitori presenti nei dati di addestramento.
+                  Se un nome vi offende personalmente, è meglio cliccare ancora una volta sul tasto <i>Nochmaaal</i>.
                 </p>
                 <p>
-                  <b>Viel Spass beim Namen generieren!</b>
+                  <b>Divertitevi a generare totem!</b>
                 </p>
               </div>
-            </div>
+            </article>
+          </div>
+        </div>
+
+        <div>
+          <input type="checkbox" id="modal-trigger-en" class="modal-trigger">
+          <label for="modal-trigger-en" class="modal-trigger-label">
+            <span class="desktop">How does this work?</span>
+            <span class="mobile">EN</span>
+          </label>
+          <label for="modal-trigger-en" class="modal-background"></label>
+          <div data-termynal class="modal closeable" id="about-en" style="padding: 3rem 45px 15px" role="dialog" aria-labelledby="dialog-title-en" aria-describedby="modal-content-en">
+            <header data-ty-top>
+              <h1 id="dialog-title-en" class="desktop">How does this work?</h1>
+            </header>
+            <label class="modal-close-trigger" for="modal-trigger-en"></label>
+            <article id="modal-content-en" class="modal-content">
+              <p>
+                This website generates new scout names using artificial intelligence.
+              </p>
+
+              <input type="checkbox" id="toggle-1-en" class="collapse-trigger" />
+              <label for="toggle-1-en" class="collapse-trigger-label">What is artificial intelligence?</label>
+              <div class="collapsible">
+                <p>
+                  Artificial intelligence is software which imitates <b>human behaviour</b>.
+                  For example, an NPC in a video game is an artificial intelligence.
+                </p>
+                <p>
+                  One discipline of artificial intelligence is the so-called "<b>Machine Learning</b>".
+                  That is when a program does not have explicit behaviour rules programmed in, but rather learns from many examples how to behave.
+                </p>
+              </div>
+              <input type="checkbox" id="toggle-2-en" class="collapse-trigger" />
+              <label for="toggle-2-en" class="collapse-trigger-label">How does this generator work?</label>
+              <div class="collapsible">
+                <p>
+                  This generator contains machine learning software called <i>char-rnn</i>.
+                  It was trained using a list of <b>20000 scout names</b>, JuBla names and YMCA names.
+                  This way the program has learned what scout names normally look like.
+                </p>
+                <p>
+                  The scout names are generated <b>letter by letter</b>.
+                  The program looks at the already generated letters, and calculates which letters fit next and how well.
+                </p>
+                <p>
+                  For example, if <i>Tarant...</i> has already been generated, a <i>u</i> will probably fit better as the next letter than an <i>x</i> or a <i>P</i>.
+                  The generator always randomly chooses the next letter it writes from all the letters it knows.
+                  But the better a letter fits, the higher it's change of getting picked by the generator.
+                </p>
+              </div>
+              <input type="checkbox" id="toggle-3-en" class="collapse-trigger" />
+              <label for="toggle-3-en" class="collapse-trigger-label">Who created this?</label>
+              <div class="collapsible">
+                <p>
+                  This scout name generator was programmed by Carlo Beltrame / Cosinus from Gloggi in Zürich.
+                </p>
+                <p>
+                  It was an idea I have had for a long time, ever since I read the article "The Unreasonable Effectiveness of Recurrent Neural Networks" by Andrej Karpathy.
+                  According to my tests, around three out of four of the generated scout names are completely new (i.e. not present in the training data).
+                </p>
+                <p>
+                  The program is published as open source on GitHub.
+                  If you have an idea for an improvement or new feature, you can contact me at <i>cosinus (at) gloggi (dot) ch</i> or at https://github.com/carlobeltrame/pfadinamen.
+                </p>
+              </div>
+              <input type="checkbox" id="toggle-4-en" class="collapse-trigger" />
+              <label for="toggle-4-en" class="collapse-trigger-label">May I use this in my scouts group?</label>
+              <div class="collapsible">
+                <p>
+                  Yes, sure. You can simply visit <b>https://pfadinamen.gloggi.ch</b>.
+                  If your browser supports it, you can even install the generator like an app to your home screen or desktop.
+                </p>
+                <p>
+                  Keep in mind: Scout kids prefer to get scout names which really suit them well.
+                  Maybe you should google the generated scout names to make sure they don't have any unexpected meaning.
+                  Or you could use the generator for inspiration only.
+                </p>
+                <p>
+                  Caution: The artificial intelligence is not aware of whether its output is considered offensive.
+                  It only tries to imitate the scout names from the training data as best as it can.
+                  If a name offends you personally, it's best to just click the <i>Nochmaaal</i> button once more.
+                </p>
+                <p>
+                  <b>Have fun generating scout names!</b>
+                </p>
+              </div>
+            </article>
           </div>
         </div>
 
 
-      </div>
+      </footer>
     </div>
     <script src="./index.js"></script>
   </body>
