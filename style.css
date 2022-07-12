@@ -29,11 +29,63 @@ body {
 }
 
 #termynal {
+  min-height: 36rem;
   max-width: 90vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
+  padding-top: 55px;
+  padding-left: 30px;
+}
+@media screen and (max-width: 880px) {
+  #termynal {
+    padding-left: 20px;
+  }
+}
+#names::before {
+  display: none;
+}
+#names {
+  padding: 0 5px 5px;
+  line-height: 1;
+  max-height: 26rem;
+  overflow-y: scroll;
+}
+
+.explanation {
+  padding-left: 2.3ch;
+  font-family: Ubuntu, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 90%;
+}
+
+[data-ty] dl {
+  margin-bottom: 2rem;
+}
+
+[data-ty] dl div {
+  padding-left: 1em;
+  text-indent: -1em;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+[data-ty] dt {
+  display: inline;
+  margin-right: 1.5ch;
+  font-family: "Fira Mono", Consolas, Menlo, Monaco, "Courier New", Courier, monospace;
+  font-weight: bold;
+  opacity: 0.7;
+  line-height: 1.5;
+  margin-bottom: -0.5rem;
+}
+
+[data-ty] dd {
+  display: inline;
+  margin-bottom: 1rem;
+  margin-left: 0;
+  line-height: 1.5;
 }
 
 [data-ty-top] {

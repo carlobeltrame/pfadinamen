@@ -1,7 +1,12 @@
-*.txt
+data/*.txt
 *.csv
 *.h5
 input.json
 *.pyc
 logs/
 .DS_Store
+/assets
+.idea
+/dev-dist
+/dist
+/node_modules

@@ -5,64 +5,24 @@
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Generiere mit künstlicher Intelligenz auf Knopfdruck neue Pfadinamen!">
     <title>Pfadinamen-Generator</title>
-    <script src="tf.min.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        function collapseAll() {
-          document.querySelectorAll('.collapse-trigger').forEach(c => c.checked = false)
-        }
-
-        // Allow closing all dialogs using the escape key
-        document.addEventListener('keyup', e => {
-          let open
-          if (e.code === 'Escape') document.querySelectorAll('.modal-trigger').forEach(t => {
-            if (t.checked) open = t
-            t.checked = false
-            collapseAll()
-          })
-          if (open) open.focus()
-        })
-        // Allow toggling modals and collapses using the enter key
-        document.querySelectorAll('.modal-trigger, .collapse-trigger').forEach(t => t.addEventListener('keyup', e => {
-          if (e.code === 'Enter') {
-            t.checked = !t.checked
-            if (!t.checked) collapseAll()
-          }
-        }))
-        // Allow toggling collapses using arrow keys
-        document.querySelectorAll('.collapse-trigger').forEach(t => t.addEventListener('keyup', e => {
-          if (e.code === 'ArrowDown' || e.code === 'ArrowRight') t.checked = true
-          if (e.code === 'ArrowUp' || e.code === 'ArrowLeft') t.checked = false
-        }))
-        // Close all collapses when closing a modal
-        document.querySelectorAll('.modal-trigger').forEach(t => t.addEventListener('change', e => {
-          if (!e.target.checked) collapseAll()
-        }))
-      })
-    </script>
-    <link rel="stylesheet" href="termynal.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
-    <script>
-    if('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js', { scope: './' })
-    }
-    </script>
+    <link rel="stylesheet" href="./termynal.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./images/icons/icon-72x72.png">
+    <link rel="apple-touch-icon" href="./images/icons/icon-180x180.png" sizes="180x180">
+    <link rel="mask-icon" href="./images/icons/mask-icon.svg" color="#3A1C71">
+    <meta name="theme-color" content="#3A1C71">
   </head>
   <body>
     <div id="background"></div>
-    <div id="termynal" data-termynal class="three-buttons" style="min-height: 34rem">
+    <div id="termynal" data-termynal class="three-buttons">
       <header data-ty-top>
         <h1 class="desktop">Pfadinamen-Generator</h1>
         <h1 class="mobile">Pfadinamen</h1>
-        <object class="spinner" id="spinner" type="image/svg+xml" data="spinner.svg" aria-hidden="true"></object>
+        <object class="spinner" id="spinner" type="image/svg+xml" data="./spinner.svg" aria-hidden="true"></object>
       </header>
-      <main style="display: inline; white-space: pre; line-height: 1" id="names" data-ty></main>
+      <main id="names" data-ty></main>
       <footer data-ty-bottom-bar>
-        <button id="refresh-button" disabled="disabled" onclick="generateNames()">Nochmaaal &rsaquo;</button>
-        <a href="https://github.com/carlobeltrame/pfadinamen" style="display: none; /* display: flex; */">
-          <img src="github.png" style="margin: 0.5rem; width: 1rem; height: 1rem;" alt="Quellcode auf GitHub" title="Wie funktioniert das? Etwas verbessern? Zum Quellcode auf GitHub!"/>
-        </a>
+        <button id="refresh-button" disabled="disabled">Nochmaaal &rsaquo;</button>
 
         <div>
           <input type="checkbox" id="modal-trigger-de" class="modal-trigger">
@@ -415,6 +375,6 @@
 
       </footer>
     </div>
-    <script src="./index.js"></script>
+    <script src="./index.js" type="module"></script>
   </body>
 </html>
