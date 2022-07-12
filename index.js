@@ -54,10 +54,17 @@ function explanations(searchResults) {
     return list;
 }
 
-function nameClicked(event) {
-    const name = event.target.nextSibling.innerHTML;
-    const explanation = event.target.nextSibling.nextSibling;
+function nameClicked({ target: checkbox }) {
+    document.querySelectorAll('.collapse-trigger').forEach(t => {
+       if (t === checkbox) {
+           return;
+       }
+       t.checked = false;
+    });
+    const name = checkbox.nextSibling.innerHTML;
+    const explanation = checkbox.nextSibling.nextSibling;
     if (explanation.innerHTML !== '') {
+        explanation.scrollIntoView({ block: 'center', behavior: 'smooth' });
         return;
     }
     const searchResults = search(name);
@@ -67,6 +74,7 @@ function nameClicked(event) {
     }
     explanation.append(searchAttribution());
     explanation.append(explanations(searchResults));
+    explanation.scrollIntoView({ block: 'center', behavior: 'smooth' });
 }
 
 function addLine(display) {
