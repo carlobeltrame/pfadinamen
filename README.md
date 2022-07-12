@@ -53,3 +53,7 @@ The trained models are also saved in TensorFlow.js format, which allows to serve
 4. Deploy the contents of the `dist` to your static file server.
 
 The models can also be deployed using Tensorflow serving, since they are also saved in the SavedModel format.
+
+## Updating the name explanation list
+In regular intervals, pfadinamen.ch publishes newly added and corrected names and explanations. With the permission of the author, we are allowed to fetch them and prepare them in JSON format for offline use in this generator.
+To fetch the most current explanations, execute `yarn run fetch-descriptions`.
