@@ -1,0 +1,29 @@
+name: LFTP
+description: Use the LFTP tool
+inputs:
+
+  ssh-username:
+    description: 'The SSH username that will be used to log in to the server'
+    required: false
+    default: root
+
+  ssh-host:
+    description: 'The SSH server where to deploy'
+    required: true
+
+  ssh-directory:
+    description: 'The directory on the SSH server where to deploy'
+    required: false
+    default: .
+
+runs:
+  using: "composite"
+  steps:
+
+    - run: ../.github/actions/lftp/lftp.sh
+      shell: bash
+      working-directory: dist
+      env:
+        SSH_USERNAME: ${{ inputs.ssh-username }}
+        SSH_HOST: ${{ inputs.ssh-host }}
+        SSH_DIRECTORY: ${{ inputs.ssh-directory }}

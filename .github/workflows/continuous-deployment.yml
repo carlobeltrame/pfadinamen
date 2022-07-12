@@ -1,0 +1,31 @@
+name: Continuous deployment
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: "Deploy"
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - run: yarn install
+
+      - run: yarn run build
+
+      - uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+
+      - run: sudo apt-get update -y && sudo apt-get install -y lftp
+
+      - uses: ./.github/actions/lftp
+        with:
+          ssh-username: ${{ secrets.SSH_USERNAME }}
+          ssh-host: ${{ secrets.SSH_HOST }}
+          ssh-directory: ${{ secrets.SSH_DIRECTORY }}
