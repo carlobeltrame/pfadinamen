@@ -50,7 +50,7 @@ body {
   padding: 0 5px 5px;
   line-height: 1;
   max-height: 26rem;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .explanation {
@@ -227,7 +227,7 @@ body {
   padding: 0 45px;
   height: 100%;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 /* Animated collapsable divs using pure CSS */
