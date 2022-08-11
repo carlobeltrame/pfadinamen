@@ -31,7 +31,7 @@ function noResults() {
 
 function searchAttribution() {
     const paragraph = document.createElement('p');
-    paragraph.innerText = 'Bedeutungen ähnlicher Namen von pfadinamen.ch:';
+    paragraph.innerHTML = 'Bedeutungen ähnlicher Namen von <a href="https://pfadinamen.ch" target="_blank">pfadinamen.ch</a>:';
     return paragraph;
 }
 
